@@ -1,6 +1,6 @@
 FROM golang AS builder
 
-WORKDIR /app
+WORKDIR /price_generator
 
 COPY . .
 
@@ -14,6 +14,6 @@ RUN apk --no-cache add ca-certificates
 RUN apk add --no-cache libc6-compat
 RUN apk update && apk add --no-cache libc6-compat  gcompat
 
-COPY --from=builder /app/main /app/main
+COPY --from=builder /price_generator/main /price_generator/main
 
-CMD ["/app/main"]
+CMD ["/price_generator/main"]

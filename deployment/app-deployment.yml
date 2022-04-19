@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minikube-price-generator
+  labels:
+    app: minikube-price-generator
+spec:
+  selector:
+    matchLabels:
+      app: minikube-price-generator
+  template:
+    metadata:
+      labels:
+        app: minikube-price-generator
+    spec:
+      containers:
+        - name: minikube-price-generator
+          image: "minikube-price-generator:latest"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: REDIS_ADDR
+              value: minikube-price-generator-redis:6379
